@@ -132,10 +132,12 @@ namespace IO.Swagger.Client
                 request.AddParameter(param.Key, param.Value);
 
             // add file parameter, if any
+#if !NET5_0
             foreach(var param in fileParams)
             {
                 request.AddFile(param.Value.Name, param.Value.Writer, param.Value.FileName, param.Value.ContentType);
             }
+#endif
 
             if (postBody != null) // http body (model or byte[]) parameter
             {
