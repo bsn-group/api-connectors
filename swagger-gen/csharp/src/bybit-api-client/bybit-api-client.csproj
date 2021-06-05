@@ -8,11 +8,15 @@
 
   <ItemGroup>
     <Compile Include="../IO.Swagger/**/*.cs" Exclude="../IO.Swagger/obj/**/*.cs"></Compile>
+    <Compile Include="../IO.Swagger.Test/**/*.cs" Exclude="../IO.Swagger.Test/obj/**/*.cs"></Compile>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NUnit" Version="3.13.2" />
     <PackageReference Include="RestSharp" Version="106.11.7" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0"/>
   </ItemGroup>
 
 </Project>

@@ -16,9 +16,12 @@ using System.Linq;
 using System.Reflection;
 using RestSharp;
 using NUnit.Framework;
+using System.Threading.Tasks;
 
 using IO.Swagger.Client;
 using IO.Swagger.Api;
+
+using BybitOrderResponse = IO.Swagger.Model.OrderResBase;
 
 namespace IO.Swagger.Test
 {
@@ -109,22 +112,49 @@ namespace IO.Swagger.Test
         /// Test OrderNew
         /// </summary>
         [Test]
-        public void OrderNewTest()
+        public async Task OrderNewTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string side = null;
-            //string symbol = null;
-            //string orderType = null;
-            //decimal? qty = null;
-            //string timeInForce = null;
-            //double? price = null;
-            //double? takeProfit = null;
-            //double? stopLoss = null;
-            //bool? reduceOnly = null;
-            //bool? closeOnTrigger = null;
-            //string orderLinkId = null;
-            //var response = instance.OrderNew(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId);
-            //Assert.IsInstanceOf<Object> (response, "response is Object");
+            // let o =
+            
+            string side = "Buy";
+            string symbol = "BTCUSD";
+            string orderType = "Limit";
+            decimal? qty = 1;
+            string timeInForce = "GoodTillCancel";
+            double? price = 20;
+            double? takeProfit = null;
+            double? stopLoss = null;
+            bool? reduceOnly = null;
+            bool? closeOnTrigger = null;
+            string orderLinkId = "abcd";
+            string timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds().ToString();
+            
+            Console.Out.WriteLine("Timestamp --> "+timestamp);
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters.Add("side", side);
+            parameters.Add("symbol", symbol);
+            parameters.Add("orderType", orderType);
+            parameters.Add("qty",qty.ToString());
+            parameters.Add("timeInForce", timeInForce);
+            parameters.Add("price", price.ToString());
+            parameters.Add("orderLinkId", orderLinkId);
+            parameters.Add("timestamp", timestamp); 
+            parameters.Add("api_key", "w0ddzkzS3kMExz4Xpc");
+            instance.Configuration.AddApiKeyPrefix("api_key", "w0ddzkzS3kMExz4Xpc");
+            instance.Configuration.AddApiKeyPrefix("sign", Common.getSignature("ppsAOlX859PcREd3nOjJ5LAJwg39UGB1S2t2", parameters));
+            instance.Configuration.AddApiKeyPrefix("timestamp",timestamp);
+            var response = await instance.OrderNewAsync(side, 
+                symbol, orderType, qty, 
+                timeInForce, price, takeProfit, 
+                stopLoss, reduceOnly, closeOnTrigger, 
+                orderLinkId);
+
+            var jobj = (Newtonsoft.Json.Linq.JObject) response;
+
+            var orderResponse = jobj.ToObject<BybitOrderResponse>(); // TODO do both COINM/USDT return the same type?
+            Console.Out.WriteLine("Log statement to debug"+orderResponse);
+            Assert.IsInstanceOf<Object> (orderResponse, "response is Object");
         }
         
         /// <summary>
