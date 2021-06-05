@@ -9,16 +9,8 @@
  */
 
 using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reflection;
-using RestSharp;
 using NUnit.Framework;
 using System.Threading.Tasks;
-
-using IO.Swagger.Client;
 using IO.Swagger.Api;
 
 using BybitOrderResponse = IO.Swagger.Model.OrderResBase;
@@ -107,7 +99,7 @@ namespace IO.Swagger.Test
             //var response = instance.OrderGetOrders(symbol, limit, orderStatus, direction, cursor);
             //Assert.IsInstanceOf<Object> (response, "response is Object");
         }
-        
+
         /// <summary>
         /// Test OrderNew
         /// </summary>
@@ -122,28 +114,16 @@ namespace IO.Swagger.Test
             string orderType = "Limit";
             decimal? qty = 1;
             string timeInForce = "GoodTillCancel";
-            double? price = 20;
+            double? price = 30000;
             double? takeProfit = null;
             double? stopLoss = null;
             bool? reduceOnly = null;
             bool? closeOnTrigger = null;
             string orderLinkId = "abcd";
-            string timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds().ToString();
-            
-            Console.Out.WriteLine("Timestamp --> "+timestamp);
-            Dictionary<String, String> parameters = new Dictionary<string, string>();
-            parameters.Add("side", side);
-            parameters.Add("symbol", symbol);
-            parameters.Add("orderType", orderType);
-            parameters.Add("qty",qty.ToString());
-            parameters.Add("timeInForce", timeInForce);
-            parameters.Add("price", price.ToString());
-            parameters.Add("orderLinkId", orderLinkId);
-            parameters.Add("timestamp", timestamp); 
-            parameters.Add("api_key", "w0ddzkzS3kMExz4Xpc");
-            instance.Configuration.AddApiKeyPrefix("api_key", "w0ddzkzS3kMExz4Xpc");
-            instance.Configuration.AddApiKeyPrefix("sign", Common.getSignature("ppsAOlX859PcREd3nOjJ5LAJwg39UGB1S2t2", parameters));
-            instance.Configuration.AddApiKeyPrefix("timestamp",timestamp);
+
+            instance.Configuration.AddApiKey("api_key", "w0ddzkzS3kMExz4Xpc");
+            instance.Configuration.AddApiKey("api_secret", "ppsAOlX859PcREd3nOjJ5LAJwg39UGB1S2t2");
+
             var response = await instance.OrderNewAsync(side, 
                 symbol, orderType, qty, 
                 timeInForce, price, takeProfit, 
@@ -153,8 +133,8 @@ namespace IO.Swagger.Test
             var jobj = (Newtonsoft.Json.Linq.JObject) response;
 
             var orderResponse = jobj.ToObject<BybitOrderResponse>(); // TODO do both COINM/USDT return the same type?
-            Console.Out.WriteLine("Log statement to debug"+orderResponse);
-            Assert.IsInstanceOf<Object> (orderResponse, "response is Object");
+            Console.Out.WriteLine("Log statement to debug " + orderResponse);
+            Assert.AreEqual(0, orderResponse.RetCode);
         }
         
         /// <summary>
