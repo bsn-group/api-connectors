@@ -110,19 +110,19 @@ namespace IO.Swagger.Test
             // let o =
             
             string side = "Buy";
-            string symbol = "BTCUSD";
+            string symbol = "EOSUSD";
             string orderType = "Limit";
-            decimal? qty = 20;
-            string timeInForce = "GoodTillCancel";
-            double? price = 20;
+            int? qty = 1;
+            string timeInForce = "PostOnly";
+            double? price = 5.0;
             double? takeProfit = null;
             double? stopLoss = null;
             bool? reduceOnly = null;
             bool? closeOnTrigger = null;
-            string orderLinkId = "abcd";
+            string orderLinkId = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds().ToString();
 
-            instance.Configuration.AddApiKey("api_key", "some_api_key");
-            instance.Configuration.AddApiKey("api_secret", "some_secret");
+            instance.Configuration.AddApiKey("api_key", "key");
+            instance.Configuration.ApiSecret = "secret";
 
             var response = await instance.OrderNewAsync(side, 
                 symbol, orderType, qty, 
@@ -133,9 +133,9 @@ namespace IO.Swagger.Test
             var jobj = (Newtonsoft.Json.Linq.JObject) response;
 
             var orderResponse = jobj.ToObject<BybitOrderResponse>(); // TODO do both COINM/USDT return the same type?
- //           Console.Out.WriteLine("Log statement to debug " + orderResponse);
-//            Assert.AreEqual(0, orderResponse.RetCode);
-            Assert.IsInstanceOf<Object>(orderResponse, "Response object");
+            Console.Out.WriteLine("Log statement to debug " + orderResponse);
+            Assert.AreEqual(0, orderResponse.RetCode);
+            //Assert.IsInstanceOf<Object>(orderResponse, "Response object");
         }
         
         /// <summary>

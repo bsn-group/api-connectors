@@ -117,7 +117,7 @@ namespace IO.Swagger.Api
         /// <param name="closeOnTrigger">close on trigger (optional)</param>
         /// <param name="orderLinkId">TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)</param>
         /// <returns>Object</returns>
-        Object OrderNew (string side, string symbol, string orderType, decimal? qty, string timeInForce, double? price = null, double? takeProfit = null, double? stopLoss = null, bool? reduceOnly = null, bool? closeOnTrigger = null, string orderLinkId = null);
+        Object OrderNew (string side, string symbol, string orderType, int? qty, string timeInForce, double? price = null, double? takeProfit = null, double? stopLoss = null, bool? reduceOnly = null, bool? closeOnTrigger = null, string orderLinkId = null);
 
         /// <summary>
         /// Place active order
@@ -138,7 +138,7 @@ namespace IO.Swagger.Api
         /// <param name="closeOnTrigger">close on trigger (optional)</param>
         /// <param name="orderLinkId">TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)</param>
         /// <returns>ApiResponse of Object</returns>
-        ApiResponse<Object> OrderNewWithHttpInfo (string side, string symbol, string orderType, decimal? qty, string timeInForce, double? price = null, double? takeProfit = null, double? stopLoss = null, bool? reduceOnly = null, bool? closeOnTrigger = null, string orderLinkId = null);
+        ApiResponse<Object> OrderNewWithHttpInfo (string side, string symbol, string orderType, int? qty, string timeInForce, double? price = null, double? takeProfit = null, double? stopLoss = null, bool? reduceOnly = null, bool? closeOnTrigger = null, string orderLinkId = null);
         /// <summary>
         /// Get my active order list.
         /// </summary>
@@ -287,7 +287,7 @@ namespace IO.Swagger.Api
         /// <param name="closeOnTrigger">close on trigger (optional)</param>
         /// <param name="orderLinkId">TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)</param>
         /// <returns>Task of Object</returns>
-        System.Threading.Tasks.Task<Object> OrderNewAsync (string side, string symbol, string orderType, decimal? qty, string timeInForce, double? price = null, double? takeProfit = null, double? stopLoss = null, bool? reduceOnly = null, bool? closeOnTrigger = null, string orderLinkId = null);
+        System.Threading.Tasks.Task<Object> OrderNewAsync (string side, string symbol, string orderType, int? qty, string timeInForce, double? price = null, double? takeProfit = null, double? stopLoss = null, bool? reduceOnly = null, bool? closeOnTrigger = null, string orderLinkId = null);
 
         /// <summary>
         /// Place active order
@@ -308,7 +308,7 @@ namespace IO.Swagger.Api
         /// <param name="closeOnTrigger">close on trigger (optional)</param>
         /// <param name="orderLinkId">TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> OrderNewAsyncWithHttpInfo (string side, string symbol, string orderType, decimal? qty, string timeInForce, double? price = null, double? takeProfit = null, double? stopLoss = null, bool? reduceOnly = null, bool? closeOnTrigger = null, string orderLinkId = null);
+        System.Threading.Tasks.Task<ApiResponse<Object>> OrderNewAsyncWithHttpInfo (string side, string symbol, string orderType, int? qty, string timeInForce, double? price = null, double? takeProfit = null, double? stopLoss = null, bool? reduceOnly = null, bool? closeOnTrigger = null, string orderLinkId = null);
         /// <summary>
         /// Get my active order list.
         /// </summary>
@@ -1010,7 +1010,7 @@ namespace IO.Swagger.Api
         /// <param name="closeOnTrigger">close on trigger (optional)</param>
         /// <param name="orderLinkId">TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)</param>
         /// <returns>Object</returns>
-        public Object OrderNew (string side, string symbol, string orderType, decimal? qty, string timeInForce, double? price = null, double? takeProfit = null, double? stopLoss = null, bool? reduceOnly = null, bool? closeOnTrigger = null, string orderLinkId = null)
+        public Object OrderNew (string side, string symbol, string orderType, int? qty, string timeInForce, double? price = null, double? takeProfit = null, double? stopLoss = null, bool? reduceOnly = null, bool? closeOnTrigger = null, string orderLinkId = null)
         {
              ApiResponse<Object> localVarResponse = OrderNewWithHttpInfo(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId);
              return localVarResponse.Data;
@@ -1032,7 +1032,7 @@ namespace IO.Swagger.Api
         /// <param name="closeOnTrigger">close on trigger (optional)</param>
         /// <param name="orderLinkId">TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)</param>
         /// <returns>ApiResponse of Object</returns>
-        public ApiResponse< Object > OrderNewWithHttpInfo (string side, string symbol, string orderType, decimal? qty, string timeInForce, double? price = null, double? takeProfit = null, double? stopLoss = null, bool? reduceOnly = null, bool? closeOnTrigger = null, string orderLinkId = null)
+        public ApiResponse< Object > OrderNewWithHttpInfo (string side, string symbol, string orderType, int? qty, string timeInForce, double? price = null, double? takeProfit = null, double? stopLoss = null, bool? reduceOnly = null, bool? closeOnTrigger = null, string orderLinkId = null)
         {
             // verify the required parameter 'side' is set
             if (side == null)
@@ -1134,7 +1134,7 @@ namespace IO.Swagger.Api
         /// <param name="closeOnTrigger">close on trigger (optional)</param>
         /// <param name="orderLinkId">TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)</param>
         /// <returns>Task of Object</returns>
-        public async System.Threading.Tasks.Task<Object> OrderNewAsync (string side, string symbol, string orderType, decimal? qty, string timeInForce, double? price = null, double? takeProfit = null, double? stopLoss = null, bool? reduceOnly = null, bool? closeOnTrigger = null, string orderLinkId = null)
+        public async System.Threading.Tasks.Task<Object> OrderNewAsync (string side, string symbol, string orderType, int? qty, string timeInForce, double? price = null, double? takeProfit = null, double? stopLoss = null, bool? reduceOnly = null, bool? closeOnTrigger = null, string orderLinkId = null)
         {
              ApiResponse<Object> localVarResponse = await OrderNewAsyncWithHttpInfo(side, symbol, orderType, qty, timeInForce, price, takeProfit, stopLoss, reduceOnly, closeOnTrigger, orderLinkId);
              return localVarResponse.Data;
@@ -1157,7 +1157,7 @@ namespace IO.Swagger.Api
         /// <param name="closeOnTrigger">close on trigger (optional)</param>
         /// <param name="orderLinkId">TCustomized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique. (optional)</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> OrderNewAsyncWithHttpInfo (string side, string symbol, string orderType, decimal? qty, string timeInForce, double? price = null, double? takeProfit = null, double? stopLoss = null, bool? reduceOnly = null, bool? closeOnTrigger = null, string orderLinkId = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> OrderNewAsyncWithHttpInfo (string side, string symbol, string orderType, int? qty, string timeInForce, double? price = null, double? takeProfit = null, double? stopLoss = null, bool? reduceOnly = null, bool? closeOnTrigger = null, string orderLinkId = null)
         {
             // verify the required parameter 'side' is set
             if (side == null)

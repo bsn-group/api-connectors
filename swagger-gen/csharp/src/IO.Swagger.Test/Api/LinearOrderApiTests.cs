@@ -20,6 +20,9 @@ using NUnit.Framework;
 using IO.Swagger.Client;
 using IO.Swagger.Api;
 
+using BybitOrderResponse = IO.Swagger.Model.OrderResBase;
+using System.Threading.Tasks;
+
 namespace IO.Swagger.Test
 {
     /// <summary>
@@ -111,24 +114,37 @@ namespace IO.Swagger.Test
         /// Test LinearOrderNew
         /// </summary>
         [Test]
-        public void LinearOrderNewTest()
+        public async Task LinearOrderNewTest()
         {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string symbol = null;
-            //string side = null;
-            //string orderType = null;
-            //string timeInForce = null;
-            //double? qty = null;
-            //double? price = null;
-            //double? takeProfit = null;
-            //double? stopLoss = null;
-            //bool? reduceOnly = null;
-            //string tpTriggerBy = null;
-            //string slTriggerBy = null;
-            //bool? closeOnTrigger = null;
-            //string orderLinkId = null;
-            //var response = instance.LinearOrderNew(symbol, side, orderType, timeInForce, qty, price, takeProfit, stopLoss, reduceOnly, tpTriggerBy, slTriggerBy, closeOnTrigger, orderLinkId);
-            //Assert.IsInstanceOf<Object> (response, "response is Object");
+            //TODO uncomment below to test the method and replace null with proper value
+            string side = "Buy";
+            string symbol = "DOGEUSDT";
+            string orderType = "Limit";
+            double? qty = 20;
+            string timeInForce = "GoodTillCancel";
+            double? price = 0.3;
+            double? takeProfit = null;
+            double? stopLoss = null;
+            bool? reduceOnly = false;
+            bool? closeOnTrigger = false;
+            string orderLinkId = "1212209";
+            string tpTriggerBy = null;
+            string slTriggerBy = null;
+
+            instance.Configuration.AddApiKey("api_key", "key");
+            instance.Configuration.AddApiKey("api_secret", "secret");
+
+            
+            var response = await instance.LinearOrderNewAsync(symbol, side, orderType, 
+            timeInForce, qty, price, takeProfit, stopLoss, reduceOnly, 
+            tpTriggerBy, slTriggerBy, closeOnTrigger, orderLinkId);
+            Assert.IsInstanceOf<Object> (response, "response is Object");
+
+            var jobj = (Newtonsoft.Json.Linq.JObject) response;
+
+            var orderResponse = jobj.ToObject<BybitOrderResponse>(); // TODO do both COINM/USDT return the same type?
+            Console.Out.WriteLine("Log statement to debug " + orderResponse);
+            Assert.AreEqual(0, orderResponse.RetCode);
         }
         
         /// <summary>
