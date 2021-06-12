@@ -7,8 +7,9 @@ namespace Bybit.Api.Client.Test
         public static void SetupForTestnet(Configuration config)
         {
             config.BasePath = "https://api-testnet.bybit.com";
-            config.AddApiKey("api_key", "eaZwPEvO2hqmrEuwFa");
-            config.AddApiKey("api_secret", "Xqpo1ZtrtTJMwiQ5br7pfpG4tCwKfTakqqr2");
+            config.AddApiKey("api_key", "<key>");
+            config.AddApiKey("api_secret", "<secret>");
         }
+
     }
 }

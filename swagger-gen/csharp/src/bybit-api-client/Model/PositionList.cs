@@ -16,7 +16,7 @@ namespace IO.Swagger.Model
                     {
                         return jtoken.ToObject<PositionInfo>();
                     }
-                    return null;
+                    return i.ToObject<PositionInfo>();
                 })
                 .Where(p => p != null && p.Size > 0);
         }

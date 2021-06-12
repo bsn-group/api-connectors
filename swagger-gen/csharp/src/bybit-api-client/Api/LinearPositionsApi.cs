@@ -1,14 +1,15 @@
 ﻿using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
+using System;
 
 namespace IO.Swagger.Api
 {
     partial class LinearPositionsApi
     {
-        public async Task<Model.LinearPositionListResultBase> GetActivePositionsAsync(string symbolFilter = null)
+        public async Task<Model.LinearPositionList> GetActivePositionsAsync(string symbolFilter = null)
         {
             var response = await this.LinearPositionsMyPositionAsync(symbolFilter) as JObject;
-            return response.ToObject<Model.LinearPositionListResultBase>();
+            return response.ToObject<Model.LinearPositionList>();
         }
     }
 }
