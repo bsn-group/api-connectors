@@ -9,15 +9,15 @@ namespace IO.Swagger.Client
 {
     partial class ApiClient
     {
-        
         partial void InterceptRequest(IRestRequest request)
         {
-            if (!string.IsNullOrWhiteSpace(Configuration.ApiSecret))
+            if (Configuration.ApiKey.ContainsKey("api_secret"))
             {
+                var secret = Configuration.ApiKey["api_secret"];
                 request.AddOrUpdateParameter("timestamp", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
-                var sign = CreateSignature(Configuration.ApiSecret, request.Parameters);
+                var sign = CreateSignature(secret, request.Parameters);
                 request.AddOrUpdateParameter("sign", sign);
-            } 
+            }
         }
 
         private static string GetParameterString(IEnumerable<Parameter> parameters)

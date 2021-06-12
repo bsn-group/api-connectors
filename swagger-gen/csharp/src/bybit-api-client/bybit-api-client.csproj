@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="../IO.Swagger/**/*.cs" Exclude="../IO.Swagger/obj/**/*.cs"></Compile>
-    <Compile Include="../IO.Swagger.Test/**/*.cs" Exclude="../IO.Swagger.Test/obj/**/*.cs"></Compile>
+    <!-- local folder cs files are automatically included because `EnableDefaultCompileItems` -->
   </ItemGroup>
 
   <ItemGroup>
@@ -17,7 +17,19 @@
     <PackageReference Include="NUnit" Version="3.13.2" />
     <PackageReference Include="RestSharp" Version="106.11.7" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0"/>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <GenerateNuspecDependsOn>$(GenerateNuspecDependsOn);SetPackageVersion</GenerateNuspecDependsOn>
+  </PropertyGroup>
+
+  <Target Name="SetPackageVersion" DependsOnTargets="Build">
+    <PropertyGroup>
+      <!-- <PackageVersion>$([System.DateTime]::Now.ToString(&quot;yyyy.MM.dd.HHmmss&quot;))</PackageVersion> -->
+      <!-- You can customize the format and the rule about how version increases here. -->
+      <PackageVersion>$([System.DateTime]::Now.ToString("yyyy.MM.dd.HHmmss"))</PackageVersion>
+    </PropertyGroup>
+  </Target>
+  
 </Project>

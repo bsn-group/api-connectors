@@ -238,9 +238,6 @@ namespace IO.Swagger.Client
             }
         }
 
-        // Custom API Secret
-        public string ApiSecret {get;set;} 
-
         /// <summary>
         /// Gets or sets the default header.
         /// </summary>

@@ -89,9 +89,7 @@ namespace IO.Swagger.Client
         /// </summary>
         /// <param name="apiKeyIdentifier">API key identifier (authentication scheme).</param>
         /// <returns>API key with prefix.</returns>
-        
-        // Custom API secret 
-        string ApiSecret {get;} 
+
         string GetApiKeyWithPrefix(string apiKeyIdentifier);
     }
 }

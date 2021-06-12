@@ -65,3 +65,4 @@ target/
 #Ipython Notebook
 .ipynb_checkpoints
 gen_code.sh
+/swagger-gen/csharp/.vs/IO.Swagger
